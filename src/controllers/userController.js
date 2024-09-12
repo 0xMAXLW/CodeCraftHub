@@ -2,6 +2,8 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+const secretKey = 'ddc4f396bcfebceb13753b585a8a7002f8361587b2e18890389c41d302bcac3b';
+
 // Controller functions for user operations
 exports.getAllUsers = async (req, res) => {
   try {
@@ -54,7 +56,7 @@ exports.loginUser = async (req, res) => {
     }
 
     // Generate a JSON Web Token (JWT)
-    const token = jwt.sign({ username: existingUser.username }, 'your-secret-key', { expiresIn: '1h' });
+    const token = jwt.sign({ username: existingUser.username }, secretKey, { expiresIn: '1h' });
 
     return res.status(200).json({ token });
   } catch (error) {

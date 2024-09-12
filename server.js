@@ -1,13 +1,15 @@
 const express = require('express');
+const connectDB = require('./config/database');
+const userRoutes = require('./src/routes/userRoutes');
 const app = express();
-const port = process.env.PORT || 3000;
-
-// Middleware setup
+// Connect to MongoDB
+connectDB();
+// Middleware
 app.use(express.json());
-
-// Routes setup
-app.use('/api/users', require('./src/routes/userRoutes'));
-
+// Routes
+app.use('/users', userRoutes);
+// Start the server
+const port = 3000;
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`Server started on port ${port}`);
 });
