@@ -1,8 +1,7 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
-const secretKey = 'ddc4f396bcfebceb13753b585a8a7002f8361587b2e18890389c41d302bcac3b';
+const { secretKey } = require('../../config/env')
 
 // Controller functions for user operations
 exports.getAllUsers = async (req, res) => {
@@ -77,4 +76,8 @@ exports.updateUserProfile = async (req, res) => {
   } catch (error) {
     return res.status(500).json({ message: 'Internal server error' });
   }
+};
+
+exports.Test = async (req, res) => {
+  res.send('Server is working!');
 };
